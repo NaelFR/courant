@@ -11,9 +11,9 @@ const { testimonies } = Astro.props;
 {testimonies.length > 0 && (
 <section id="avis" class="py-14 px-4 bg-rose">
   <div class="mx-auto max-w-7xl">
-    <h4 class="text-h4 lg:text-h2 text-center text-bordeaux mb-10">
+    <h2 class="text-h4 lg:text-h2 text-center text-bordeaux mb-10">
       Ils m'ont fait confiance.
-    </h4>
+    </h2>
     <div>
       <ul
         class="flex items-stretch gap-4 snap-x snap-mandatory overflow-x-auto
@@ -21,7 +21,7 @@ const { testimonies } = Astro.props;
       >
         {
           testimonies.map(({ rate, text, author, location, type }) => (
-            <li class="flex w-80 shrink-0 snap-start">
+            <li class="flex w-[min(20rem,100%)] shrink-0 snap-start">
               <div class="flex w-full flex-col rounded-3xl bg-vanille p-8">
                 <div
                   class="flex shrink-0"

@@ -17,12 +17,12 @@ const { action, id = "contact-form" } = Astro.props;
   aria-labelledby={`${id}-title`}
   class="mx-auto w-full max-w-140 rounded-3xl bg-vanille p-6 lg:p-10 flex-1"
 >
-  <h6 id={`${id}-title`} class="mb-6 text-h6 text-bordeaux">
+  <h3 id={`${id}-title`} class="mb-6 text-h6 text-bordeaux">
     Demande de devis
-  </h6>
+  </h3>
 
   <div class="flex flex-col gap-5">
-    <div class="flex flex-col lg:flex-row gap-5">
+    <div class="flex flex-col md:flex-row gap-5">
       <Input
         id={`${id}-name`}
         name="name"
@@ -43,7 +43,7 @@ const { action, id = "contact-form" } = Astro.props;
         required
       />
     </div>
-    <div class="flex flex-col lg:flex-row gap-5">
+    <div class="flex flex-col md:flex-row gap-5">
       <Input
         id={`${id}-email`}
         name="email"
@@ -80,7 +80,7 @@ const { action, id = "contact-form" } = Astro.props;
     </div>
   </div>
 
-  <Button variant="bordeaux" type="submit" className="w-full">
+  <Button variant="bordeaux" type="submit" fullWidth>
     Envoyer ma demande
   </Button>
 

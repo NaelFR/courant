@@ -5,6 +5,7 @@ import type {
   SiteSettings,
   Testimony,
   Work,
+  LegalPage,
 } from "../data/site-types";
 
 export const siteContentQuery = `{
@@ -21,8 +22,11 @@ export const siteContentQuery = `{
     | order(coalesce(order, 0) asc, _createdAt desc, _id asc){
       "id": _id,
       "src": photo.asset->url,
+      photo,
       "alt": coalesce(description, titre, "Réalisation Courant")
-  }
+  },
+  "legalPages": *[_type == "legalPage" && slug in ["mentions-legales", "politique-de-confidentialite"] && length(title) > 0 && length(content) > 0]
+    | order(_updatedAt desc){slug, title, lastUpdated, content}
 }`;
 
 interface SiteContent {
@@ -30,6 +34,7 @@ interface SiteContent {
   services: Service[];
   testimonies: Testimony[];
   works: Work[];
+  legalPages: LegalPage[];
 }
 
 export async function getSiteContent() {
@@ -51,6 +56,10 @@ export async function getSiteContent() {
     // Only show reviews explicitly published in Sanity.
     testimonies: content.testimonies,
     works: content.works,
+    legalPages: content.legalPages.filter(
+      (page, index, pages) =>
+        pages.findIndex((candidate) => candidate.slug === page.slug) === index,
+    ),
   };
 }
 

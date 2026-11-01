@@ -49,3 +49,24 @@ pas publier silencieusement des coordonnées obsolètes.
 
 Dans Sanity → API → CORS origins, autoriser l’origine du Studio (par exemple
 `http://localhost:4321`, ou le port indiqué par Astro) avec **Allow credentials**.
+
+## Pages légales
+
+Créer un document **Page légale** pour les mentions légales et un autre pour la
+politique de confidentialité. Choisir la page, renseigner le titre, la date de
+dernière mise à jour et le texte, puis publier. La date apparaît sous le titre au
+format JJ/MM/AAAA. Une ligne vide sépare les paragraphes. Les routes et les liens du
+pied de page sont générés après reconstruction uniquement pour les textes publiés
+et non vides. Aucun texte juridique n’est prérempli.
+
+## Affichage
+
+Le header et le pied de page partagent la même navigation. Les liens vers les
+avis et les réalisations apparaissent uniquement si ces sections ont du contenu.
+Le téléphone du header utilise les informations de l’entreprise.
+
+Le recadrage et le hotspot des photos Sanity sont repris dans la galerie. Les textes courants
+utilisent Source Sans 3, les titres Parkinsans et les boutons Cal Sans.
+
+Le formulaire ne dispose toujours pas de service d’envoi ; sa connexion reste à
+configurer séparément.

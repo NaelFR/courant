@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cal+Sans&family=Source+Sans+3:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cal+Sans&family=Source+Sans+3:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap");
 @import "tailwindcss";
 
@@ -15,8 +15,8 @@
   --color-gris: #80606a;
   --color-blanc: #ffffff;
 
-  --font-sans: "Cal Sans", sans-serif;
-  --font-body: "Cal Sans", sans-serif;
+  --font-sans: "Source Sans 3", sans-serif;
+  --font-body: "Source Sans 3", sans-serif;
   --font-heading: "Parkinsans", sans-serif;
   --font-cal-sans: "Cal Sans", sans-serif;
   --font-parkinsans: "Parkinsans", sans-serif;
@@ -79,11 +79,14 @@
 
   body {
     font-family: var(--font-body);
+    overflow-wrap: anywhere;
     @apply text-body-md;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    font-weight: 700;
+    hyphens: auto;
   }
 
   h1 { @apply text-h1; }
@@ -92,4 +95,24 @@
   h4 { @apply text-h4; }
   h5 { @apply text-h5; }
   h6 { @apply text-h6; }
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-vanille);
+  color: var(--color-bordeaux);
+}
+.skip-link:focus { transform: translateY(0); }
+
+@layer base {
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
 }

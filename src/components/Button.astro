@@ -1,11 +1,14 @@
 ---
-interface Props {
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends Pick<HTMLAttributes<"button">, "type" | "disabled" | "aria-label" | "aria-describedby"> {
   variant: "orange" | "bordeaux" | "vanille" | "outlined";
   className?: string;
   href?: string;
+  fullWidth?: boolean;
 }
 
-const { variant, className = "", href, ...props } = Astro.props;
+const { variant, className = "", href, fullWidth = false, type = "button", ...props } = Astro.props;
 const Tag = href ? "a" : "button";
 
 const variantClassnames = {
@@ -21,7 +24,8 @@ const variantClassnames = {
 
 <Tag
   href={href}
-  class={`${variantClassnames[variant]} py-4 px-5 rounded-full ${className} w-fit h-14`}
+  type={href ? undefined : type}
+  class={`${variantClassnames[variant]} inline-flex items-center justify-center text-center font-cal-sans whitespace-nowrap py-3 px-4 sm:px-5 rounded-full min-h-14 ${fullWidth ? "w-full" : "w-fit"} ${className}`}
   {...props}
 >
   <slot />

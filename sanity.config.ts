@@ -3,6 +3,7 @@ import { structureTool } from "sanity/structure";
 import { service } from "./sanity/schemaTypes/service";
 import { testimony } from "./sanity/schemaTypes/testimony";
 import { siteSettings } from "./sanity/schemaTypes/siteSettings";
+import { legalPage } from "./sanity/schemaTypes/legalPage";
 export default defineConfig({
   name: "my-project",
   title: "Courant",
@@ -46,6 +47,7 @@ export default defineConfig({
       service,
       testimony,
       siteSettings,
+      legalPage,
       {
         name: "realisation",
         title: "Réalisation",

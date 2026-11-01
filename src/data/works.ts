@@ -1,11 +1,15 @@
+import { createImageUrlBuilder } from "@sanity/image-url";
+import type { Work } from "./site-types";
 export type { Work } from "./site-types";
 
 // Sanity's CDN resizes and crops images without downloading originals at build time.
-export function getWorkImageUrl(src: string, width: number) {
-  const url = new URL(src);
-  url.searchParams.set("w", String(width));
-  url.searchParams.set("h", String(Math.round((width * 422) / 320)));
-  url.searchParams.set("fit", "crop");
-  url.searchParams.set("auto", "format");
-  return url.toString();
+export function getWorkImageUrl(work: Work, width: number) {
+  const [, , projectId, dataset] = new URL(work.src).pathname.split("/");
+  return createImageUrlBuilder({ projectId, dataset })
+    .image(work.photo ?? work.src)
+    .width(width)
+    .height(Math.round((width * 422) / 320))
+    .fit("crop")
+    .auto("format")
+    .url();
 }

@@ -30,7 +30,8 @@ const { class: className } = Astro.props;
   const navigation = document.querySelector<HTMLElement>("#main-navigation");
 
   if (button && navigation) {
-    const desktop = window.matchMedia("(min-width: 64rem)");
+    const desktop = window.matchMedia("(min-width: 80rem)");
+    const header = button.closest("header");
 
     const setOpen = (open: boolean) => {
       navigation.dataset.open = String(open);
@@ -45,15 +46,17 @@ const { class: className } = Astro.props;
       setOpen(button.getAttribute("aria-expanded") !== "true");
     });
 
-    navigation.addEventListener("click", (event) => {
+    header?.addEventListener("click", (event) => {
       if (event.target instanceof Element && event.target.closest("a")) {
         setOpen(false);
-        if (!desktop.matches) button.focus({ preventScroll: true });
+        if (!desktop.matches && navigation.contains(document.activeElement)) {
+          button.focus({ preventScroll: true });
+        }
       }
     });
 
     document.addEventListener("click", (event) => {
-      if (event.target instanceof Node && !button.closest("header")?.contains(event.target)) {
+      if (event.target instanceof Node && !header?.contains(event.target)) {
         setOpen(false);
       }
     });

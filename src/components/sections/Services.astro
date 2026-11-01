@@ -23,9 +23,9 @@ const icons = {
 
 <section id="services" class="bg-vanille px-4 py-14">
   <div class="max-w-7xl mx-auto flex flex-col">
-    <h4 class="text-bordeaux text-center text-h4 lg:text-h2">
+    <h2 class="text-bordeaux text-center text-h4 lg:text-h2">
       Mes services<span class="text-orange">.</span>
-    </h4>
+    </h2>
 
     <p class="text-center text-gris text-body-md lg:text-body-lg mt-2 mb-10">
       Particuliers et professionnels : j'interviens sur tout type de logement,
@@ -38,19 +38,17 @@ const icons = {
         services.map(({ icon, name, description, exemples }) => {
           const Icon = icons[icon] ?? Plug;
           return (
-          <div class="bg-white border-2 border-bordeaux rounded-3xl p-8 flex flex-col gap-6 max-w-89.5">
-            <Icon />
-            <div class="border-dashed border-b-2 border-gris/50 pb-6">
-              <h6 class="mb-3 text-h6 lg:text-h5">{name}</h6>
-              <p class="text-gris text-body-md lg:text-body-lg">
-                {description}
-              </p>
-            </div>
+          <div class="bg-white border-2 border-bordeaux rounded-3xl p-8 grid grid-rows-subgrid row-span-4 gap-6 w-full max-w-89.5">
+            <Icon aria-hidden="true" />
+            <h3 class="text-bordeaux text-h6 lg:text-h5">{name}</h3>
+            <p class="text-gris text-body-md lg:text-body-lg border-dashed border-b-2 border-gris/50 pb-6">
+              {description}
+            </p>
             <div>
               <ul class="space-y-2">
                 {exemples.map((exemple) => (
                   <li class="text-body-md lg:text-body-lg">
-                    <span class="text-orange mr-2">•</span>
+                    <span aria-hidden="true" class="text-orange mr-2">•</span>
                     <span>{exemple}</span>
                   </li>
                 ))}

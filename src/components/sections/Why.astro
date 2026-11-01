@@ -26,38 +26,38 @@ const cons = [
     <div
       class="flex flex-col gap-4 lg:gap-6 text-center lg:text-left lg:flex-1"
     >
-      <h4 class="text-vanille text-h4 lg:text-h2">
+      <h2 class="text-vanille text-h4 lg:text-h2">
         Pourquoi choisir <span class="text-orange">Courant</span>.
-      </h4>
+      </h2>
       <p class="text-rose text-body-md lg:text-body-lg">
         Une petite structure, un seul électricien, et des engagements simples
         que je tiens sur chaque chantier.
       </p>
       <div class="w-full hidden lg:block lg:mt-2">
-        <Button variant="vanille">Parlons de votre projet</Button>
+        <Button variant="vanille" href="/#contact">Parlons de votre projet</Button>
       </div>
     </div>
     <div class="my-10 lg:my-0 lg:flex-1">
-      <ul>
+      <ol>
         {
           cons.map(({ title, description }, index) => (
             <li class="border-b border-dashed border-bordeaux/50 py-8 first:pt-0 last:border-b-0 last:pb-0">
               <div class="flex gap-6">
                 <div class="w-14 h-14 bg-bordeaux rounded-full flex items-center justify-center shrink-0">
-                  <h5 class="text-vanille">{index + 1}</h5>
+                  <span aria-hidden="true" class="text-vanille text-h5 font-parkinsans font-bold">{index + 1}</span>
                 </div>
                 <div>
-                  <h6 class="text-vanille text-h6 lg:text-h5">{title}</h6>
+                  <h3 class="text-vanille text-h6 lg:text-h5">{title}</h3>
                   <p class="text-rose">{description}</p>
                 </div>
               </div>
             </li>
           ))
         }
-      </ul>
+      </ol>
     </div>
     <div class="w-full flex lg:hidden justify-center">
-      <Button variant="vanille" className="w-full max-w-89.5"
+      <Button variant="vanille" href="/#contact" fullWidth className="max-w-89.5"
         >Parlons de votre projet</Button
       >
     </div>

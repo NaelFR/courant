@@ -1,0 +1,59 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import Layout from "../layouts/Layout.astro";
+import { getSiteContent } from "../lib/site-content";
+import { getNavigation } from "../data/navigation";
+
+export const getStaticPaths = (async () => {
+  const { settings, works, testimonies, legalPages } = await getSiteContent();
+  const navigation = getNavigation(works.length > 0, testimonies.length > 0);
+  return legalPages.map((page) => ({
+    params: { legalPage: page.slug },
+    props: { page, settings, navigation, legalPages },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { page, settings, navigation, legalPages } = Astro.props;
+const formattedLastUpdated = page.lastUpdated
+  ? new Intl.DateTimeFormat("fr-FR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(new Date(`${page.lastUpdated}T00:00:00Z`))
+  : null;
+---
+
+<Layout
+  title={`${page.title} — Courant`}
+  settings={settings}
+  navigation={navigation}
+  legalPages={legalPages}
+>
+  <article class="bg-vanille px-4 py-12 lg:py-18 text-bordeaux">
+    <div class="mx-auto max-w-7xl">
+      <header class="mb-10 text-center">
+        <h1 class="text-h3 md:text-h2">
+          {page.title}<span class="text-orange">.</span>
+        </h1>
+        {
+          formattedLastUpdated && (
+            <p class="mt-3 text-body-lg text-gris">
+              Dernière mise à jour :{" "}
+              <time datetime={page.lastUpdated!}>{formattedLastUpdated}</time>
+            </p>
+          )
+        }
+      </header>
+      <div class="space-y-6 text-body-lg wrap-break-word">
+        {
+          page.content
+            .split(/\n\s*\n/)
+            .filter(Boolean)
+            .map((paragraph) => <p class="whitespace-pre-line">{paragraph}</p>)
+        }
+      </div>
+    </div>
+  </article>
+</Layout>

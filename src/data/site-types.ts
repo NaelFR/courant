@@ -1,3 +1,5 @@
+import type { SanityImageSource } from "@sanity/image-url";
+
 export const serviceIcons = [
   { title: "Prise", value: "plug" },
   { title: "Maison", value: "house-setup" },
@@ -26,6 +28,14 @@ export interface Work {
   id: string;
   src: string;
   alt: string;
+  photo?: SanityImageSource;
+}
+
+export interface LegalPage {
+  lastUpdated?: string | null;
+  slug: "mentions-legales" | "politique-de-confidentialite";
+  title: string;
+  content: string;
 }
 
 export interface SiteSettings {

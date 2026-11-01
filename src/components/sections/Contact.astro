@@ -9,9 +9,9 @@ const { settings } = Astro.props;
 
 <section id="contact" class="bg-bordeaux py-14 px-4">
   <div
-    class="mx-auto max-w-7xl flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-18"
+    class="mx-auto max-w-7xl flex flex-col xl:flex-row xl:items-center gap-8 xl:gap-12 2xl:gap-18"
   >
-    <div class="min-w-0 flex-1 text-center lg:text-left">
+    <div class="min-w-0 flex-1 text-center xl:text-left">
       <h2 class="text-h4 text-vanille lg:text-h2">
         Discutons de <span class="text-orange">votre projet</span>.
       </h2>
@@ -23,11 +23,11 @@ const { settings } = Astro.props;
       <dl class="mt-8 divide-y divide-dashed divide-gris/50">
         <div
           class="grid grid-cols-1 items-center gap-2 py-6
-             lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-8"
+             md:grid-cols-[7rem_minmax(0,1fr)] md:gap-6"
         >
           <dt class="text-body-lg text-rose">Téléphone</dt>
 
-          <dd class="min-w-0 font-parkinsans text-h6 text-vanille">
+          <dd class="min-w-0 text-body-lg font-semibold text-vanille">
             <a
               href={phoneHref(settings.phone)}
               class="hover:underline focus-visible:outline-2 focus-visible:outline-offset-4"
@@ -39,11 +39,11 @@ const { settings } = Astro.props;
 
         <div
           class="grid grid-cols-1 items-center gap-2 py-6
-             lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-8"
+             md:grid-cols-[7rem_minmax(0,1fr)] md:gap-6"
         >
           <dt class="text-body-lg text-rose">Email</dt>
 
-          <dd class="min-w-0 font-parkinsans text-h6 text-vanille">
+          <dd class="min-w-0 text-body-lg font-semibold text-vanille">
             <a
               href={`mailto:${settings.email}`}
               class="wrap-break-word hover:underline focus-visible:outline-2 focus-visible:outline-offset-4"
@@ -55,11 +55,11 @@ const { settings } = Astro.props;
 
         <div
           class="grid grid-cols-1 items-center gap-2 py-6
-             lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-8"
+             md:grid-cols-[7rem_minmax(0,1fr)] md:gap-6"
         >
           <dt class="text-body-lg text-rose">Adresse</dt>
 
-          <dd class="min-w-0 font-parkinsans text-h6 text-vanille">
+          <dd class="min-w-0 text-body-lg font-semibold text-vanille">
             {settings.street}<br />
             {settings.postalCode} {settings.city}
           </dd>
