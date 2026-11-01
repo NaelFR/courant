@@ -1,6 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import LogoOrange from "../../assets/logo-orange.png";
+import type { SiteSettings } from "../../data/site-types";
+import { phoneHref } from "../../lib/site-content";
+
+interface Props { settings: SiteSettings }
+const { settings } = Astro.props;
+const automaticYear = settings.siteYear == null;
+const year = settings.siteYear ?? new Intl.DateTimeFormat("fr-FR", {
+  year: "numeric", timeZone: "Europe/Paris",
+}).format(new Date());
 ---
 
 <section
@@ -11,7 +20,7 @@ import LogoOrange from "../../assets/logo-orange.png";
       <div class="text-center lg:flex-1">
         <h6 class="text-orange text-body-lg font-cal-sans">Courant.</h6>
         <p class="text-body-md text-rose px-15 lg:px-0">
-          Aménagement d'intérieur · Électricité · Dépannage
+          {settings.specialties.join(" · ")}
         </p>
       </div>
       <div class="text-center lg:flex-1">
@@ -26,8 +35,8 @@ import LogoOrange from "../../assets/logo-orange.png";
       <div class="text-center lg:flex-1">
         <h6 class="text-orange text-body-lg font-cal-sans mb-6">Contact</h6>
         <ul class="text-body-md text-vanille space-y-3">
-          <li><a href="/">06 14 81 27 13</a></li>
-          <li><a href="/">courant.btp@gmail.com</a></li>
+          <li><a href={phoneHref(settings.phone)}>{settings.phone}</a></li>
+          <li><a href={`mailto:${settings.email}`}>{settings.email}</a></li>
           <li><a href="/">Instagram · @courantabc</a></li>
         </ul>
       </div>
@@ -37,7 +46,7 @@ import LogoOrange from "../../assets/logo-orange.png";
         </h6>
         <ul class="text-body-md text-vanille space-y-3 px-15 lg:px-0">
           <li>Métropole lilloise & Weppes</li>
-          <li>24 rue du Chevalier de la barre 59184 Sainghin-en-Weppes</li>
+          <li>{settings.street} {settings.postalCode} {settings.city}</li>
         </ul>
       </div>
     </div>
@@ -55,7 +64,7 @@ import LogoOrange from "../../assets/logo-orange.png";
     class="mt-8 lg:mt-12 text-center lg:text-left block lg:flex lg:justify-between lg:items-center mx-auto max-w-7xl"
   >
     <span class="text-rose text-body-md"
-      >© 2026 Courant. S.A.R.L. · SIRET 999 368 145 00010</span
+      >© <span data-current-year={automaticYear ? "" : undefined}>{year}</span> Courant. S.A.R.L. · SIRET {settings.siret}</span
     >
     <ul
       class="mt-6 lg:mt-0 text-body-md text-vanille space-y-3 lg:space-y-0 block lg:flex gap-0 lg:gap-8"
@@ -65,3 +74,16 @@ import LogoOrange from "../../assets/logo-orange.png";
     </ul>
   </div>
 </section>
+
+<script>
+  function updateYear() {
+    const year = new Intl.DateTimeFormat("fr-FR", {
+      year: "numeric", timeZone: "Europe/Paris",
+    }).format(new Date());
+    document.querySelectorAll("[data-current-year]").forEach((element) => {
+      element.textContent = year;
+    });
+  }
+  updateYear();
+  document.addEventListener("astro:page-load", updateYear);
+</script>

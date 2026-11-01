@@ -6,74 +6,19 @@ import HouseSetup from "../../assets/servicesIcons/house-setup.svg";
 import Light from "../../assets/servicesIcons/light.svg";
 import Shield from "../../assets/servicesIcons/shield.svg";
 
-const services = [
-  {
-    icon: Plug,
-    name: "Installation électrique",
-    description:
-      "Création ou extension de votre installation : circuits, prises, interrupteurs, éclairage et raccordements.",
-    exemples: [
-      "Maison, appartement, local pro",
-      "Ajout de prises et de circuits",
-      "Raccordement des équipements",
-    ],
-  },
-  {
-    icon: HouseSetup,
-    name: "Rénovation & mise aux normes",
-    description:
-      "Remise à neuf d'une installation ancienne pour la rendre sûre et conforme, sans tout casser.",
-    exemples: [
-      "Remplacement du câblage",
-      "Mise à la terre",
-      "Préparation au Consuel",
-    ],
-  },
-  {
-    icon: Flash,
-    name: "Dépannage & urgences",
-    description:
-      "Création ou extension de votre installation : circuits, prises, interrupteurs, éclairage et raccordements.",
-    exemples: [
-      "Maison, appartement, local pro",
-      "Ajout de prises et de circuits",
-      "Raccordement des équipements",
-    ],
-  },
-  {
-    icon: ElectricPanel,
-    name: "Tableau électrique",
-    description:
-      "Création ou extension de votre installation : circuits, prises, interrupteurs, éclairage et raccordements.",
-    exemples: [
-      "Maison, appartement, local pro",
-      "Ajout de prises et de circuits",
-      "Raccordement des équipements",
-    ],
-  },
-  {
-    icon: Shield,
-    name: "Diagnostic & sécurité",
-    description:
-      "Création ou extension de votre installation : circuits, prises, interrupteurs, éclairage et raccordements.",
-    exemples: [
-      "Maison, appartement, local pro",
-      "Ajout de prises et de circuits",
-      "Raccordement des équipements",
-    ],
-  },
-  {
-    icon: Light,
-    name: "Aménagement d'intérieur",
-    description:
-      "Création ou extension de votre installation : circuits, prises, interrupteurs, éclairage et raccordements.",
-    exemples: [
-      "Maison, appartement, local pro",
-      "Ajout de prises et de circuits",
-      "Raccordement des équipements",
-    ],
-  },
-];
+import type { Service } from "../../data/site-types";
+
+interface Props { services: Service[] }
+const { services } = Astro.props;
+const icons = {
+  plug: Plug,
+  "house-setup": HouseSetup,
+  flash: Flash,
+  "electric-panel": ElectricPanel,
+  shield: Shield,
+  light: Light,
+};
+
 ---
 
 <section class="bg-vanille px-4 py-14">
@@ -90,7 +35,9 @@ const services = [
       class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 justify-items-center"
     >
       {
-        services.map(({ icon: Icon, name, description, exemples }) => (
+        services.map(({ icon, name, description, exemples }) => {
+          const Icon = icons[icon] ?? Plug;
+          return (
           <div class="bg-white border-2 border-bordeaux rounded-3xl p-8 flex flex-col gap-6 max-w-89.5">
             <Icon />
             <div class="border-dashed border-b-2 border-gris/50 pb-6">
@@ -110,7 +57,8 @@ const services = [
               </ul>
             </div>
           </div>
-        ))
+          );
+        })
       }
     </div>
   </div>

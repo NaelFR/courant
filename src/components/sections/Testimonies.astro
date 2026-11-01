@@ -1,52 +1,14 @@
 ---
 import Star from "../../assets/star.svg";
 
-const testimonies = [
-  {
-    rate: 5,
-    text: "Panne générale un dimanche soir. Cédric est venu dans l'heure, a trouvé le problème et tout remis en route. Prix annoncé respecté.",
-    author: "Julie M.",
-    location: "Lambersart",
-    type: "Dépannage",
-  },
-  {
-    rate: 3,
-    text: "Remplacement complet du tableau dans notre maison des années 70. Travail soigné, explications claires, rien à redire. Travail soigné, explications claires, rien à redire. Travail soigné, explications claires, rien à redire. Travail soigné, explications claires, rien à redire. Travail soigné, explications claires, rien à redire. ",
-    author: "Naël A.",
-    location: "Hellemmes",
-    type: "Tableau électrique",
-  },
-  {
-    rate: 5,
-    text: "Il a géré toute l'électricité de notre cuisine et les spots du salon. De très bons conseils sur l'éclairage.",
-    author: "Sophie & Karim",
-    location: "Lille",
-    type: "Aménagement",
-  },
-  {
-    rate: 5,
-    text: "Réactif, ponctuel et chantier laissé nickel. Le devis était détaillé et la facture identique. Je recommande.",
-    author: "Marc L.",
-    location: "Wavrin",
-    type: "Mise aux normes",
-  },
-  {
-    rate: 5,
-    text: "Diagnostic complet avant l'achat de notre maison. Rapport clair, conseils honnêtes et devis de mise aux normes très raisonnable.",
-    author: "Amélie R.",
-    location: "Sainghin-en-Weppes",
-    type: "Diagnostic",
-  },
-  {
-    rate: 5,
-    text: "Création de nouveaux circuits pour notre bureau à domicile. Cédric a été à l'écoute et tout était terminé en une journée.",
-    author: "Nicolas B.",
-    location: "La Madeleine",
-    type: "Installation",
-  },
-];
+import type { Testimony } from "../../data/site-types";
+
+interface Props { testimonies: Testimony[] }
+const { testimonies } = Astro.props;
+
 ---
 
+{testimonies.length > 0 && (
 <section class="py-14 px-4 bg-rose">
   <div class="mx-auto max-w-7xl">
     <h4 class="text-h4 lg:text-h2 text-center text-bordeaux mb-10">
@@ -106,3 +68,4 @@ const testimonies = [
     </div>
   </div>
 </section>
+)}

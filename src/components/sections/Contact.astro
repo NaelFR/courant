@@ -1,5 +1,10 @@
 ---
 import Contactform from "../Contactform.astro";
+import type { SiteSettings } from "../../data/site-types";
+import { phoneHref } from "../../lib/site-content";
+
+interface Props { settings: SiteSettings }
+const { settings } = Astro.props;
 ---
 
 <section class="bg-bordeaux py-14 px-4">
@@ -24,10 +29,10 @@ import Contactform from "../Contactform.astro";
 
           <dd class="min-w-0 font-parkinsans text-h6 text-vanille">
             <a
-              href="tel:+33614812713"
+              href={phoneHref(settings.phone)}
               class="hover:underline focus-visible:outline-2 focus-visible:outline-offset-4"
             >
-              06 14 81 27 13
+              {settings.phone}
             </a>
           </dd>
         </div>
@@ -40,10 +45,10 @@ import Contactform from "../Contactform.astro";
 
           <dd class="min-w-0 font-parkinsans text-h6 text-vanille">
             <a
-              href="mailto:courant.btp@gmail.com"
+              href={`mailto:${settings.email}`}
               class="wrap-break-word hover:underline focus-visible:outline-2 focus-visible:outline-offset-4"
             >
-              courant.btp@gmail.com
+              {settings.email}
             </a>
           </dd>
         </div>
@@ -55,8 +60,8 @@ import Contactform from "../Contactform.astro";
           <dt class="text-body-lg text-rose">Adresse</dt>
 
           <dd class="min-w-0 font-parkinsans text-h6 text-vanille">
-            24 rue du Chevalier de la Barre<br />
-            59184 Sainghin-en-Weppes
+            {settings.street}<br />
+            {settings.postalCode} {settings.city}
           </dd>
         </div>
       </dl>

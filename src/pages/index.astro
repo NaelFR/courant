@@ -6,28 +6,28 @@ import Hero from "../components/sections/Hero.astro";
 import Services from "../components/sections/Services.astro";
 import Why from "../components/sections/Why.astro";
 import Works from "../components/sections/Works.astro";
-import { works } from "../data/works";
 import Testimonies from "../components/sections/Testimonies.astro";
 import Location from "../components/sections/Location.astro";
 import Footer from "../components/sections/Footer.astro";
 import Contact from "../components/sections/Contact.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { getSiteContent } from "../lib/site-content";
+
+const { settings, services, testimonies, works } = await getSiteContent();
 ---
 
 <Layout title="Courant - Électricite et dépannage">
-  <Hero />
+  <Hero settings={settings} />
   <section class="bg-vin px-4 py-8 lg:py-10 flex justify-center">
     <h6 class="text-rose text-center">
-      Électricité · Dépannage · Aménagement d'intérieur
+      {settings.specialties.join(" · ")}
     </h6>
   </section>
-  <Services />
+  <Services services={services} />
   <Why />
   <Works works={works} />
-  <Testimonies />
+  <Testimonies testimonies={testimonies} />
   <Location />
-  <Contact />
-  <Footer />
+  <Contact settings={settings} />
+  <Footer settings={settings} />
 </Layout>

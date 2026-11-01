@@ -1,26 +1,11 @@
-import type { ImageMetadata } from "astro";
+export type { Work } from "./site-types";
 
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/works/*.{png,jpg,jpeg,webp}",
-  { eager: true }
-);
-
-const descriptions: Record<string, string> = {
-  work1: "Salle de bain avec miroir éclairé",
-  work2: "Installation électrique d’une buanderie",
-  work3: "Salle de bain avec douche et meuble vasque",
-  work4: "Tableau électrique",
-  work5: "Baignoire et murs carrelés",
-};
-
-export const works = Object.entries(images)
-  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
-  .map(([path, image]) => {
-    const name = path.split("/").pop()!.replace(/\.[^.]+$/, "");
-
-    return {
-      id: name,
-      src: image.default,
-      alt: descriptions[name] ?? "",
-    };
-  });
+// Sanity's CDN resizes and crops images without downloading originals at build time.
+export function getWorkImageUrl(src: string, width: number) {
+  const url = new URL(src);
+  url.searchParams.set("w", String(width));
+  url.searchParams.set("h", String(Math.round((width * 422) / 320)));
+  url.searchParams.set("fit", "crop");
+  url.searchParams.set("auto", "format");
+  return url.toString();
+}

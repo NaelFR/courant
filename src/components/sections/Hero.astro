@@ -1,5 +1,10 @@
 ---
 import Button from "../Button.astro";
+import type { SiteSettings } from "../../data/site-types";
+import { phoneHref } from "../../lib/site-content";
+
+interface Props { settings: SiteSettings }
+const { settings } = Astro.props;
 import Profil from "../../assets/profil.png";
 import CourantIconVanille from "../../assets/courant-icone-vanille.png";
 import { Image } from "astro:assets";
@@ -31,7 +36,7 @@ import { Image } from "astro:assets";
         class="flex flex-col lg:flex-row mt-6 mb-12 lg:mt-8 lg:mb-0 gap-3 lg:gap-4"
       >
         <Button variant="orange">Demander un devis</Button>
-        <Button variant="outlined">Appeler le 06 14 81 27 13</Button>
+        <Button variant="outlined" href={phoneHref(settings.phone)}>Appeler le {settings.phone}</Button>
       </div>
     </div>
     <div class="relative rounded-4xl overflow-hidden lg:flex-1">

@@ -2,9 +2,11 @@
 interface Props {
   variant: "orange" | "bordeaux" | "vanille" | "outlined";
   className?: string;
+  href?: string;
 }
 
-const { variant, className = "", ...props } = Astro.props;
+const { variant, className = "", href, ...props } = Astro.props;
+const Tag = href ? "a" : "button";
 
 const variantClassnames = {
   vanille:
@@ -17,9 +19,10 @@ const variantClassnames = {
 };
 ---
 
-<button
-  class={`${variantClassnames[variant]} py-4 px-5 rounded-full ${className} w-fit h-14`}
+<Tag
+  href={href}
+  class={`${variantClassnames[variant]} inline-flex items-center justify-center py-4 px-5 rounded-full ${className} w-fit h-14`}
   {...props}
 >
   <slot />
-</button>
+</Tag>
