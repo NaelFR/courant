@@ -73,6 +73,10 @@
 /* Default typography. Utilities can override these base styles.
    These defaults assign font families; text-h* utilities alone do not. */
 @layer base {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
   body {
     font-family: var(--font-body);
     @apply text-body-md;

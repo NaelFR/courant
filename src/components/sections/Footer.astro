@@ -4,12 +4,17 @@ import LogoOrange from "../../assets/logo-orange.png";
 import type { SiteSettings } from "../../data/site-types";
 import { phoneHref } from "../../lib/site-content";
 
-interface Props { settings: SiteSettings }
+interface Props {
+  settings: SiteSettings;
+}
 const { settings } = Astro.props;
 const automaticYear = settings.siteYear == null;
-const year = settings.siteYear ?? new Intl.DateTimeFormat("fr-FR", {
-  year: "numeric", timeZone: "Europe/Paris",
-}).format(new Date());
+const year =
+  settings.siteYear ??
+  new Intl.DateTimeFormat("fr-FR", {
+    year: "numeric",
+    timeZone: "Europe/Paris",
+  }).format(new Date());
 ---
 
 <section
@@ -53,7 +58,7 @@ const year = settings.siteYear ?? new Intl.DateTimeFormat("fr-FR", {
     <Image
       src={LogoOrange}
       alt="Logo de l'entreprise Courant"
-      class="h-12.75 lg:h-43.25 mt-0 lg:mt-16"
+      class="h-12.75 lg:h-43.25 mt-8 lg:mt-16"
       height={173}
       width={1200}
       layout="fixed"
@@ -64,7 +69,8 @@ const year = settings.siteYear ?? new Intl.DateTimeFormat("fr-FR", {
     class="mt-8 lg:mt-12 text-center lg:text-left block lg:flex lg:justify-between lg:items-center mx-auto max-w-7xl"
   >
     <span class="text-rose text-body-md"
-      >© <span data-current-year={automaticYear ? "" : undefined}>{year}</span> Courant. S.A.R.L. · SIRET {settings.siret}</span
+      >© <span data-current-year={automaticYear ? "" : undefined}>{year}</span> Courant.
+      S.A.R.L. · SIRET {settings.siret}</span
     >
     <ul
       class="mt-6 lg:mt-0 text-body-md text-vanille space-y-3 lg:space-y-0 block lg:flex gap-0 lg:gap-8"
@@ -78,7 +84,8 @@ const year = settings.siteYear ?? new Intl.DateTimeFormat("fr-FR", {
 <script>
   function updateYear() {
     const year = new Intl.DateTimeFormat("fr-FR", {
-      year: "numeric", timeZone: "Europe/Paris",
+      year: "numeric",
+      timeZone: "Europe/Paris",
     }).format(new Date());
     document.querySelectorAll("[data-current-year]").forEach((element) => {
       element.textContent = year;

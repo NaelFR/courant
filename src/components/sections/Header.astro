@@ -12,9 +12,9 @@ const links = [
 ];
 ---
 
-<header class="bg-bordeaux border-b border-b-bordeaux-clair py-3 px-4">
+<header class="sticky top-0 z-50 bg-bordeaux border-b border-b-bordeaux-clair py-3 px-4">
   <div
-    class="mx-auto flex max-w-7xl flex-wrap items-center
+    class="mx-auto flex max-w-7xl items-center
            lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-x-6"
   >
     <a
@@ -25,6 +25,7 @@ const links = [
         src={LogoOrange}
         alt="Logo de l'entreprise Courant"
         height={20}
+        class="h-auto w-24 sm:w-auto"
         layout="fixed"
         quality="high"
       />
@@ -37,7 +38,7 @@ const links = [
       <Button variant="outlined" className="hidden md:block">
         06 14 81 27 13
       </Button>
-      <Button variant="orange">Devis gratuit</Button>
+      <Button variant="orange" href="#contact">Devis gratuit</Button>
     </div>
 
     <Burgermenu class="ml-4 lg:hidden" />
@@ -45,8 +46,11 @@ const links = [
     <nav
       id="main-navigation"
       aria-label="Navigation principale"
-      class="hidden w-full peer-aria-expanded:block
-         lg:col-start-2 lg:row-start-1 lg:block lg:w-auto"
+      data-open="false"
+      class="absolute inset-x-0 top-full hidden max-h-[calc(100dvh-5rem)] overflow-y-auto
+         border-b border-bordeaux-clair bg-bordeaux px-4 shadow-lg data-[open=true]:block
+         lg:static lg:col-start-2 lg:row-start-1 lg:block lg:max-h-none lg:w-auto
+         lg:overflow-visible lg:border-0 lg:px-0 lg:shadow-none"
     >
       <ul
         class="flex flex-col gap-8 py-9
