@@ -15,7 +15,11 @@ const { settings, services, testimonies, works, legalPages } = await getSiteCont
 const navigation = getNavigation(works.length > 0, testimonies.length > 0);
 ---
 
-<Layout title="Courant — Électricité et dépannage" settings={settings} navigation={navigation} legalPages={legalPages}>
+<Layout
+  title="Courant — Électricien à Lille et dans les Weppes"
+  description="Installation, rénovation et dépannage électrique à Lille et dans les Weppes. Cédric, votre interlocuteur du devis à la mise en service. Devis gratuit."
+  settings={settings} navigation={navigation} legalPages={legalPages}
+>
   <Hero settings={settings} />
   <div class="bg-vin px-4 py-8 lg:py-10 flex justify-center">
     <p class="text-rose text-center font-cal-sans text-h6">

@@ -3,18 +3,20 @@ import Button from "../Button.astro";
 import type { SiteSettings } from "../../data/site-types";
 import { phoneHref } from "../../lib/site-content";
 
-interface Props { settings: SiteSettings }
+interface Props {
+  settings: SiteSettings;
+}
 const { settings } = Astro.props;
 import Profil from "../../assets/profil.png";
 import CourantIconVanille from "../../assets/courant-icone-vanille.png";
 import { Image } from "astro:assets";
 ---
 
-<section class="bg-bordeaux py-12 lg:py-30 px-4">
+<section class="bg-bordeaux py-12 md:py-30 px-4">
   <div
-    class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:gap-20 lg:items-center"
+    class="max-w-7xl mx-auto flex flex-col md:flex-row md:gap-20 md:items-center"
   >
-    <div class="lg:flex-1">
+    <div class="md:flex-1">
       <div class="flex flex-col gap-4">
         <p
           class="w-fit text-vanille font-medium rounded-full border border-bordeaux-clair px-3 py-2"
@@ -33,25 +35,33 @@ import { Image } from "astro:assets";
         </p>
       </div>
       <div
-        class="flex flex-col lg:flex-row mt-6 mb-12 lg:mt-8 lg:mb-0 gap-3 lg:gap-4"
+        class="flex flex-col md:flex-row mt-6 mb-12 md:mt-8 md:mb-0 gap-3 md:gap-4"
       >
         <Button variant="orange" href="/#contact">Demander un devis</Button>
-        <Button variant="outlined" href={phoneHref(settings.phone)}>Appeler le {settings.phone}</Button>
+        <Button variant="outlined" href={phoneHref(settings.phone)}
+          >Appeler le {settings.phone}</Button
+        >
       </div>
     </div>
-    <div class="relative rounded-4xl overflow-hidden lg:flex-1">
+    <div class="relative rounded-4xl overflow-hidden md:flex-1">
       <Image
         src={Profil}
-        layout="fixed"
+        layout="none"
+        widths={[320, 560]}
+        sizes="(min-width: 1312px) 600px, (min-width: 1024px) calc((100vw - 112px) / 2), calc(100vw - 32px)"
+        loading="eager"
         class="w-full"
         alt="Photo de profil de Cédric, l'artisan"
       />
       <div
-        class="absolute bottom-0 left-0 rounded-full ring-16 ring-bordeaux w-24 lg:w-30"
+        class="absolute bottom-0 left-0 rounded-full ring-16 ring-bordeaux w-24 md:w-30"
       >
         <Image
           src={CourantIconVanille}
           layout="fixed"
+          width={120}
+          densities={[1, 2]}
+          sizes="(min-width: 1024px) 120px, 96px"
           class="w-full"
           alt=""
         />

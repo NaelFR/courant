@@ -21,7 +21,7 @@ d’iframe ou un délai écoulé n’est jamais interprété comme un succès.
    | `ALLOWED_ORIGINS` | Origines exactes séparées par des virgules, sans slash final |
 
    Exemple pour `ALLOWED_ORIGINS` :
-   `https://courantabc.fr,https://www.courantabc.fr,http://localhost:4321`.
+   `https://courant.abou-chahine-nael.workers.dev,http://localhost:4321`.
    Ajouter l’adresse réelle de l’hébergement et les éventuelles prévisualisations
    utilisées pour les tests. Retirer localhost quand il n’est plus nécessaire.
 4. Sélectionner la fonction **setup**, cliquer sur **Exécuter**, puis autoriser

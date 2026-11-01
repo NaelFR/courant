@@ -3,6 +3,8 @@
 Le formulaire de demande de devis utilise Google Apps Script et Google Sheets.
 Voir le [guide de configuration et de déploiement](google-apps-script/README.md).
 
+Voir également le [déploiement Cloudflare, les variables et le changement de domaine](CLOUDFLARE.md).
+
 ```sh
 npm create astro@latest -- --template basics
 ```

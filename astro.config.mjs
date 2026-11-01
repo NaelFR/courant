@@ -4,9 +4,13 @@ import tailwindcss from "@tailwindcss/vite";
 
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
+import { readSeoConfig, seoAssets } from "./config/seo.mjs";
+
+const { site, noindex } = readSeoConfig();
 
 // https://astro.build/config
 export default defineConfig({
+  site,
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
@@ -34,5 +38,6 @@ export default defineConfig({
       studioBasePath: "/admin",
     }),
     react(),
+    seoAssets({ site, noindex }),
   ],
 });

@@ -27,6 +27,9 @@ const formattedLastUpdated = page.lastUpdated
 
 <Layout
   title={`${page.title} — Courant`}
+  description={page.slug === "mentions-legales"
+    ? "Mentions légales de Courant : informations sur l’entreprise, l’éditeur et l’hébergement du site."
+    : "Politique de confidentialité de Courant : utilisation de vos données personnelles et informations relatives à vos droits."}
   settings={settings}
   navigation={navigation}
   legalPages={legalPages}
