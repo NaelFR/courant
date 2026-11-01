@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Cal+Sans&family=Source+Sans+3:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette: hex labels from the reference.
+     Bordeaux-clair has a duplicated/mistaken label in the reference;
+     #4A2530 is sampled from the screenshot and is approximate. */
+  --color-vanille: #fffecb;
+  --color-orange: #f35502;
+  --color-vin: #7c1328;
+  --color-bordeaux: #3c0a19;
+  --color-rose: #ffe2dc;
+  --color-bordeaux-clair: #502330;
+  --color-gris: #80606a;
+  --color-blanc: #ffffff;
+
+  --font-sans: "Cal Sans", sans-serif;
+  --font-body: "Cal Sans", sans-serif;
+  --font-heading: "Parkinsans", sans-serif;
+  --font-cal-sans: "Cal Sans", sans-serif;
+  --font-parkinsans: "Parkinsans", sans-serif;
+  --font-source-sans: "Source Sans 3", sans-serif;
+
+  /* Heading sizes assume the browser default root size of 16px.
+     -3% letter spacing in Figma becomes -0.03em in CSS. */
+  --text-h1: 4.5rem; /* 72px */
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h1--font-weight: 800;
+
+  --text-h2: 3.5rem; /* 56px */
+  --text-h2--line-height: 1.25;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h2--font-weight: 800;
+
+  --text-h3: 2.75rem; /* 44px */
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.03em;
+  --text-h3--font-weight: 700;
+
+  --text-h4: 2.25rem; /* 36px */
+  --text-h4--line-height: 1.25;
+  --text-h4--letter-spacing: -0.03em;
+  --text-h4--font-weight: 700;
+
+  --text-h5: 1.75rem; /* 28px */
+  --text-h5--line-height: 1.25;
+  --text-h5--letter-spacing: -0.03em;
+  --text-h5--font-weight: 700;
+
+  --text-h6: 1.375rem; /* 22px */
+  --text-h6--line-height: 1.25;
+  --text-h6--letter-spacing: -0.03em;
+  --text-h6--font-weight: 700;
+
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body-lg--line-height: 1.75rem; /* 28px */
+  --text-body-lg--letter-spacing: 0em;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 1rem; /* 16px */
+  --text-body-md--line-height: 1.5rem; /* 24px */
+  --text-body-md--letter-spacing: 0em;
+  --text-body-md--font-weight: 400;
+
+  --text-body-sm: 0.875rem; /* 14px */
+  --text-body-sm--line-height: 1.25rem; /* 20px */
+  --text-body-sm--letter-spacing: 0em;
+  --text-body-sm--font-weight: 400;
+}
+
+/* Default typography. Utilities can override these base styles.
+   These defaults assign font families; text-h* utilities alone do not. */
+@layer base {
+  body {
+    font-family: var(--font-body);
+    @apply text-body-md;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  h1 { @apply text-h1; }
+  h2 { @apply text-h2; }
+  h3 { @apply text-h3; }
+  h4 { @apply text-h4; }
+  h5 { @apply text-h5; }
+  h6 { @apply text-h6; }
+}

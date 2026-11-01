@@ -1,0 +1,66 @@
+---
+import Contactform from "../Contactform.astro";
+---
+
+<section class="bg-bordeaux py-14 px-4">
+  <div
+    class="mx-auto max-w-7xl flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-18"
+  >
+    <div class="min-w-0 flex-1 text-center lg:text-left">
+      <h2 class="text-h4 text-vanille lg:text-h2">
+        Discutons de <span class="text-orange">votre projet</span>.
+      </h2>
+
+      <p class="mt-4 text-body-md text-rose lg:text-body-lg">
+        Je réponds sous 48 à 72h. Le devis est gratuit et sans engagement.
+      </p>
+
+      <dl class="mt-8 divide-y divide-dashed divide-gris/50">
+        <div
+          class="grid grid-cols-1 items-center gap-2 py-6
+             lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-8"
+        >
+          <dt class="text-body-lg text-rose">Téléphone</dt>
+
+          <dd class="min-w-0 font-parkinsans text-h6 text-vanille">
+            <a
+              href="tel:+33614812713"
+              class="hover:underline focus-visible:outline-2 focus-visible:outline-offset-4"
+            >
+              06 14 81 27 13
+            </a>
+          </dd>
+        </div>
+
+        <div
+          class="grid grid-cols-1 items-center gap-2 py-6
+             lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-8"
+        >
+          <dt class="text-body-lg text-rose">Email</dt>
+
+          <dd class="min-w-0 font-parkinsans text-h6 text-vanille">
+            <a
+              href="mailto:courant.btp@gmail.com"
+              class="wrap-break-word hover:underline focus-visible:outline-2 focus-visible:outline-offset-4"
+            >
+              courant.btp@gmail.com
+            </a>
+          </dd>
+        </div>
+
+        <div
+          class="grid grid-cols-1 items-center gap-2 py-6
+             lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-8"
+        >
+          <dt class="text-body-lg text-rose">Adresse</dt>
+
+          <dd class="min-w-0 font-parkinsans text-h6 text-vanille">
+            24 rue du Chevalier de la Barre<br />
+            59184 Sainghin-en-Weppes
+          </dd>
+        </div>
+      </dl>
+    </div>
+    <Contactform action="post" />
+  </div>
+</section>

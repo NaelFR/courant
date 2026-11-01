@@ -1,0 +1,67 @@
+---
+const cities = [
+  "Lille",
+  "Lambersart",
+  "La Madeleine",
+  "Marcq-en-Barœul",
+  "Saint-André",
+  "Lomme",
+  "Loos",
+  "Haubourdin",
+  "Roubaix",
+  "Villeneuve-d'Ascq",
+  "Tourcoing",
+  "Wavrin",
+  "La Bassée",
+  "Fournes-en-Weppes",
+  "Sainghin-en-Weppes",
+];
+---
+
+<section class="grid bg-vin lg:grid-cols-2">
+  <div
+    class="px-4 py-14 text-center
+           sm:px-8
+           lg:col-start-2 lg:row-start-1 lg:px-8 lg:py-16 lg:text-left
+           xl:px-16 xl:py-20
+           2xl:px-30 2xl:py-26"
+  >
+    <div class="mx-auto max-w-xl">
+      <h2
+        class="mb-4 text-h4 text-vanille
+               lg:text-[clamp(2rem,3vw,3.5rem)] lg:leading-tight"
+      >
+        Métropole lilloise
+        <span class="text-orange"> &amp; Weppes</span>.
+      </h2>
+
+      <p class="mb-8 text-body-md text-vanille xl:text-body-lg">
+        J'interviens dans un rayon d'environ 30 km autour de Lille. Votre
+        commune n'apparaît pas ? Appelez-moi, on trouve une solution.
+      </p>
+
+      <ul class="flex flex-wrap justify-center gap-2 lg:justify-start">
+        {
+          cities.map((city) => (
+            <li class="rounded-full border border-bordeaux-clair px-3 py-2">
+              <span class="text-body-sm text-rose xl:text-body-md">{city}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div
+    class="relative h-97.5
+           lg:col-start-1 lg:row-start-1 lg:h-auto lg:min-h-125"
+  >
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d69598.8538016803!2d2.982814347612642!3d50.58524308642097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1793443552148!5m2!1sfr!2sfr"
+      title="Zone d’intervention : métropole lilloise et Weppes"
+      class="absolute inset-0 h-full w-full border-0"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>

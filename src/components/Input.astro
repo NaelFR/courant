@@ -1,0 +1,191 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends Pick<
+  HTMLAttributes<"input">,
+  | "placeholder"
+  | "autocomplete"
+  | "required"
+  | "disabled"
+  | "readonly"
+  | "minlength"
+  | "maxlength"
+  | "inputmode"
+  | "form"
+> {
+  id: string;
+  name: string;
+  label?: string;
+  "aria-label"?: string;
+  type?: "text" | "email" | "tel" | "url" | "password" | "search";
+  value?: string;
+  error?: string;
+  multiline?: boolean;
+  rows?: number;
+  pattern?: string;
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  label,
+  "aria-label": ariaLabel,
+  type = "text",
+  value = "",
+  error = "",
+  multiline = false,
+  rows = 5,
+  pattern,
+  class: className,
+  ...attributes
+} = Astro.props;
+
+if (!label && !ariaLabel) {
+  throw new Error(`Input "${name}" needs a label or aria-label.`);
+}
+
+const errorId = `${id}-error`;
+
+const controlClasses = [
+  "peer block w-full rounded-2xl border-2 border-gris bg-white",
+  "px-[18px] pr-14 text-base leading-6 text-[#030712]",
+  "placeholder:text-gris focus:border-orange focus:outline-none",
+  "disabled:cursor-not-allowed disabled:opacity-50",
+];
+
+const sharedAttributes = {
+  ...attributes,
+  id,
+  name,
+  "aria-label": ariaLabel,
+  "aria-invalid": error ? ("true" as const) : undefined,
+  "aria-describedby": error ? errorId : undefined,
+  "data-control": true,
+};
+---
+
+<courant-field class:list={["block", className]}>
+  {
+    label && (
+      <label for={id} class="mb-2 block text-body-md text-black">
+        {label}
+      </label>
+    )
+  }
+
+  <div class="relative">
+    {
+      multiline ? (
+        <textarea
+          {...sharedAttributes}
+          rows={rows}
+          class:list={[controlClasses, "min-h-44 resize-y py-4"]}
+        >
+          {value}
+        </textarea>
+      ) : (
+        <input
+          {...sharedAttributes}
+          type={type}
+          pattern={pattern}
+          value={value}
+          class:list={[controlClasses, "h-15"]}
+        />
+      )
+    }
+
+    <span
+      aria-hidden="true"
+      class:list={[
+        "pointer-events-none absolute right-4.5",
+        "hidden size-5 items-center justify-center",
+        "rounded-full bg-vin text-sm leading-none text-white",
+        "peer-aria-invalid:flex",
+        multiline ? "top-5" : "top-1/2 -translate-y-1/2",
+      ]}
+    >
+      ×
+    </span>
+  </div>
+
+  <p
+    id={errorId}
+    data-error
+    hidden={!error}
+    aria-live="polite"
+    class="mt-2 text-body-sm text-vin"
+  >
+    {error}
+  </p>
+</courant-field>
+
+<script>
+  class CourantField extends HTMLElement {
+    private initialized = false;
+
+    connectedCallback() {
+      if (this.initialized) return;
+
+      const control = this.querySelector<
+        HTMLInputElement | HTMLTextAreaElement
+      >("[data-control]");
+
+      const message = this.querySelector<HTMLElement>("[data-error]");
+
+      if (!control || !message) return;
+
+      this.initialized = true;
+
+      let touched = Boolean(message.textContent?.trim());
+
+      // Also support errors provided by your server.
+      if (touched) {
+        control.setCustomValidity(message.textContent!.trim());
+      }
+
+      const showError = (error: string) => {
+        message.textContent = error;
+        message.hidden = !error;
+
+        control.setAttribute("aria-invalid", String(Boolean(error)));
+
+        if (error) {
+          control.setAttribute("aria-describedby", message.id);
+        } else {
+          control.removeAttribute("aria-describedby");
+        }
+      };
+
+      const validate = () => {
+        showError(control.validationMessage);
+      };
+
+      control.addEventListener("blur", () => {
+        touched = true;
+        validate();
+      });
+
+      control.addEventListener("invalid", () => {
+        touched = true;
+        validate();
+      });
+
+      control.addEventListener("input", () => {
+        control.setCustomValidity("");
+
+        if (touched) validate();
+      });
+
+      control.form?.addEventListener("reset", () => {
+        touched = false;
+        control.setCustomValidity("");
+        showError("");
+      });
+    }
+  }
+
+  if (!customElements.get("courant-field")) {
+    customElements.define("courant-field", CourantField);
+  }
+</script>

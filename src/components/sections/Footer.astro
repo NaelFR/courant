@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import LogoOrange from "../../assets/logo-orange.png";
+---
+
+<section
+  class="bg-bordeaux border-t border-bordeaux-clair pt-8 lg:pt-16 pb-12 px-4"
+>
+  <div class="mx-auto max-w-7xl pb-10 border-b border-gris/50 border-dashed">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <div class="text-center lg:flex-1">
+        <h6 class="text-orange text-body-lg font-cal-sans">Courant.</h6>
+        <p class="text-body-md text-rose px-15 lg:px-0">
+          Aménagement d'intérieur · Électricité · Dépannage
+        </p>
+      </div>
+      <div class="text-center lg:flex-1">
+        <h6 class="text-orange text-body-lg font-cal-sans mb-6">À propos</h6>
+        <ul class="text-body-md text-vanille space-y-3">
+          <li><a href="/">Services</a></li>
+          <li><a href="/">Réalisations</a></li>
+          <li><a href="/">Avis clients</a></li>
+          <li><a href="/">Services</a></li>
+        </ul>
+      </div>
+      <div class="text-center lg:flex-1">
+        <h6 class="text-orange text-body-lg font-cal-sans mb-6">Contact</h6>
+        <ul class="text-body-md text-vanille space-y-3">
+          <li><a href="/">06 14 81 27 13</a></li>
+          <li><a href="/">courant.btp@gmail.com</a></li>
+          <li><a href="/">Instagram · @courantabc</a></li>
+        </ul>
+      </div>
+      <div class="text-center lg:flex-1">
+        <h6 class="text-orange text-body-lg font-cal-sans mb-6">
+          Zone d'intervention
+        </h6>
+        <ul class="text-body-md text-vanille space-y-3 px-15 lg:px-0">
+          <li>Métropole lilloise & Weppes</li>
+          <li>24 rue du Chevalier de la barre 59184 Sainghin-en-Weppes</li>
+        </ul>
+      </div>
+    </div>
+    <Image
+      src={LogoOrange}
+      alt="Logo de l'entreprise Courant"
+      class="h-12.75 lg:h-43.25 mt-0 lg:mt-16"
+      height={173}
+      width={1200}
+      layout="fixed"
+      quality="high"
+    />
+  </div>
+  <div
+    class="mt-8 lg:mt-12 text-center lg:text-left block lg:flex lg:justify-between lg:items-center mx-auto max-w-7xl"
+  >
+    <span class="text-rose text-body-md"
+      >© 2026 Courant. S.A.R.L. · SIRET 999 368 145 00010</span
+    >
+    <ul
+      class="mt-6 lg:mt-0 text-body-md text-vanille space-y-3 lg:space-y-0 block lg:flex gap-0 lg:gap-8"
+    >
+      <li><a href="/">Mentions Légales</a></li>
+      <li><a href="/">Politique de confidentialité</a></li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  variant: "orange" | "bordeaux" | "vanille" | "outlined";
+  className?: string;
+}
+
+const { variant, className = "", ...props } = Astro.props;
+
+const variantClassnames = {
+  vanille:
+    "bg-vanille text-bordeaux hover:opacity-80 focus:bg-vanille/80 focus:outline-vanille",
+  orange: "bg-orange hover:opacity-80 focus:bg-orange/80 focus:outline-orange",
+  bordeaux:
+    "bg-bordeaux text-vanille hover:opacity-80 focus:bg-bordeaux/80 focus:outline-bordeaux ",
+  outlined:
+    "bg-transparent border border-2 border-vanille text-vanille hover:bg-white/10 focus:bg-white/20 focus:outline-vanille ",
+};
+---
+
+<button
+  class={`${variantClassnames[variant]} py-4 px-5 rounded-full ${className} w-fit h-14`}
+  {...props}
+>
+  <slot />
+</button>

@@ -1,0 +1,90 @@
+---
+import Input from "./Input.astro";
+import Button from "./Button.astro";
+
+interface Props {
+  action: string;
+  id?: string;
+}
+
+const { action, id = "contact-form" } = Astro.props;
+---
+
+<form
+  id={id}
+  action={action}
+  method="POST"
+  aria-labelledby={`${id}-title`}
+  class="mx-auto w-full max-w-140 rounded-3xl bg-vanille p-6 lg:p-10 flex-1"
+>
+  <h6 id={`${id}-title`} class="mb-6 text-h6 text-bordeaux">
+    Demande de devis
+  </h6>
+
+  <div class="flex flex-col gap-5">
+    <div class="flex flex-col lg:flex-row gap-5">
+      <Input
+        id={`${id}-name`}
+        name="name"
+        label="Nom"
+        placeholder="Jean Dupont"
+        autocomplete="name"
+        maxlength={120}
+        required
+      />
+
+      <Input
+        id={`${id}-city`}
+        name="city"
+        label="Commune"
+        placeholder="Lille"
+        autocomplete="address-level2"
+        maxlength={120}
+        required
+      />
+    </div>
+    <div class="flex flex-col lg:flex-row gap-5">
+      <Input
+        id={`${id}-email`}
+        name="email"
+        label="Email"
+        type="email"
+        placeholder="vous@email.com"
+        autocomplete="email"
+        maxlength={254}
+        required
+      />
+
+      <Input
+        id={`${id}-phone`}
+        name="phone"
+        label="Téléphone (facultatif)"
+        type="tel"
+        placeholder="06 00 00 00 00"
+        autocomplete="tel"
+        maxlength={40}
+      />
+    </div>
+    <div class="my-5">
+      <Input
+        id={`${id}-message`}
+        name="message"
+        label="Votre message"
+        multiline
+        rows={5}
+        placeholder="Décrivez votre besoin en quelques mots…"
+        minlength={10}
+        maxlength={5000}
+        required
+      />
+    </div>
+  </div>
+
+  <Button variant="bordeaux" type="submit" className="w-full">
+    Envoyer ma demande
+  </Button>
+
+  <p class="mt-3 text-center text-body-sm text-black">
+    Vos informations servent uniquement à vous recontacter.
+  </p>
+</form>

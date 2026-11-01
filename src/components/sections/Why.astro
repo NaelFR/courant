@@ -1,0 +1,65 @@
+---
+import Button from "../Button.astro";
+const cons = [
+  {
+    title: "Un seul interlocuteur",
+    description:
+      "C'est moi, Cédric, qui réponds au téléphone, établis le devis et réalise les travaux. Vous savez toujours à qui parler.",
+  },
+  {
+    title: "Un devis clair et gratuit",
+    description:
+      "Un prix détaillé avant le démarrage, poste par poste. Pas de surprise sur la facture.",
+  },
+  {
+    title: "Un travail aux normes et propre",
+    description:
+      "Installations conformes à la NF C 15-100, finitions soignées et chantier laissé propre à mon départ.",
+  },
+];
+---
+
+<section class="bg-vin px-4 py-14">
+  <div
+    class="mx-auto max-w-7xl flex flex-col lg:flex-row lg:items-center gap-0 lg:gap-20"
+  >
+    <div
+      class="flex flex-col gap-4 lg:gap-6 text-center lg:text-left lg:flex-1"
+    >
+      <h4 class="text-vanille text-h4 lg:text-h2">
+        Pourquoi choisir <span class="text-orange">Courant</span>.
+      </h4>
+      <p class="text-rose text-body-md lg:text-body-lg">
+        Une petite structure, un seul électricien, et des engagements simples
+        que je tiens sur chaque chantier.
+      </p>
+      <div class="w-full hidden lg:block lg:mt-2">
+        <Button variant="vanille">Parlons de votre projet</Button>
+      </div>
+    </div>
+    <div class="my-10 lg:my-0 lg:flex-1">
+      <ul>
+        {
+          cons.map(({ title, description }, index) => (
+            <li class="border-b border-dashed border-bordeaux/50 py-8 first:pt-0 last:border-b-0 last:pb-0">
+              <div class="flex gap-6">
+                <div class="w-14 h-14 bg-bordeaux rounded-full flex items-center justify-center shrink-0">
+                  <h5 class="text-vanille">{index + 1}</h5>
+                </div>
+                <div>
+                  <h6 class="text-vanille text-h6 lg:text-h5">{title}</h6>
+                  <p class="text-rose">{description}</p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="w-full flex lg:hidden justify-center">
+      <Button variant="vanille" className="w-full max-w-89.5"
+        >Parlons de votre projet</Button
+      >
+    </div>
+  </div>
+</section>

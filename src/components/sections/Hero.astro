@@ -1,0 +1,56 @@
+---
+import Button from "../Button.astro";
+import Profil from "../../assets/profil.png";
+import CourantIconVanille from "../../assets/courant-icone-vanille.png";
+import { Image } from "astro:assets";
+---
+
+<section class="bg-bordeaux py-12 lg:py-30 px-4">
+  <div
+    class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:gap-20 lg:items-center"
+  >
+    <div class="lg:flex-1">
+      <div class="flex flex-col gap-4">
+        <p
+          class="w-fit text-vanille font-medium rounded-full border border-bordeaux-clair px-3 py-2"
+        >
+          Électricien • Métropole lilloise & Weppes
+        </p>
+        <h1
+          class="font-parkinsans text-vanille font-bold lg:font-extrabold text-h3 lg:text-h1"
+        >
+          Branché sur <span class="text-orange">vos besoins</span>.
+        </h1>
+        <p class="text-rose text-body-md lg:text-body-lg">
+          Je suis Cédric, électricien à Lille et dans les Weppes. Installation,
+          rénovation, dépannage et aménagement d'intérieur : je m'occupe de
+          votre électricité du devis à la mise en service.
+        </p>
+      </div>
+      <div
+        class="flex flex-col lg:flex-row mt-6 mb-12 lg:mt-8 lg:mb-0 gap-3 lg:gap-4"
+      >
+        <Button variant="orange">Demander un devis</Button>
+        <Button variant="outlined">Appeler le 06 14 81 27 13</Button>
+      </div>
+    </div>
+    <div class="relative rounded-4xl overflow-hidden lg:flex-1">
+      <Image
+        src={Profil}
+        layout="fixed"
+        class="w-full"
+        alt="Photo de profil de Cédric, l'artisan"
+      />
+      <div
+        class="absolute bottom-0 left-0 rounded-full ring-16 ring-bordeaux w-24 lg:w-30"
+      >
+        <Image
+          src={CourantIconVanille}
+          layout="fixed"
+          class="w-full"
+          alt="Logo de l'entreprise, usage esthétique"
+        />
+      </div>
+    </div>
+  </div>
+</section>

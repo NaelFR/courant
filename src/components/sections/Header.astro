@@ -1,0 +1,71 @@
+---
+import Button from "../Button.astro";
+import { Image } from "astro:assets";
+import LogoOrange from "../../assets/logo-orange.png";
+import Burgermenu from "../Burgermenu.astro";
+
+const links = [
+  { href: "#services", label: "Services" },
+  { href: "#pourquoi", label: "Pourquoi choisir Courant." },
+  { href: "#realisations", label: "Réalisations" },
+  { href: "#avis", label: "Avis" },
+];
+---
+
+<header class="bg-bordeaux border-b border-b-bordeaux-clair py-3 px-4">
+  <div
+    class="mx-auto flex max-w-7xl flex-wrap items-center
+           lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-x-6"
+  >
+    <a
+      href="/"
+      class="shrink-0 lg:col-start-1 lg:row-start-1 lg:justify-self-start"
+    >
+      <Image
+        src={LogoOrange}
+        alt="Logo de l'entreprise Courant"
+        height={20}
+        layout="fixed"
+        quality="high"
+      />
+    </a>
+
+    <div
+      class="ml-auto flex items-center gap-3
+             lg:col-start-3 lg:row-start-1 lg:ml-0 lg:justify-self-end"
+    >
+      <Button variant="outlined" className="hidden md:block">
+        06 14 81 27 13
+      </Button>
+      <Button variant="orange">Devis gratuit</Button>
+    </div>
+
+    <Burgermenu class="ml-4 lg:hidden" />
+
+    <nav
+      id="main-navigation"
+      aria-label="Navigation principale"
+      class="hidden w-full peer-aria-expanded:block
+         lg:col-start-2 lg:row-start-1 lg:block lg:w-auto"
+    >
+      <ul
+        class="flex flex-col gap-8 py-9
+               lg:flex-row lg:items-center lg:gap-6 lg:py-0"
+      >
+        {
+          links.map(({ href, label }) => (
+            <li>
+              <a
+                href={href}
+                class="text-vanille block hover:underline
+                       focus-visible:outline-2 focus-visible:outline-offset-4"
+              >
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

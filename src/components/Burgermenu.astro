@@ -1,0 +1,61 @@
+---
+import BurgerMenu from "../assets/burger-menu.svg";
+import CloseIcon from "../assets/close-icon.svg";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<button
+  id="menu-toggle"
+  type="button"
+  aria-label="Ouvrir le menu"
+  aria-expanded="false"
+  aria-controls="main-navigation"
+  class:list={[
+    "peer group inline-flex shrink-0 items-center justify-center text-vanille",
+    "focus-visible:outline-2 focus-visible:outline-offset-4",
+    className,
+  ]}
+>
+  <BurgerMenu class="group-aria-expanded:hidden" />
+  <CloseIcon class="hidden group-aria-expanded:block" />
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>("#menu-toggle");
+  const navigation = document.querySelector<HTMLElement>("#main-navigation");
+
+  if (button && navigation) {
+    const setOpen = (open: boolean) => {
+      button.setAttribute("aria-expanded", String(open));
+      button.setAttribute(
+        "aria-label",
+        open ? "Fermer le menu" : "Ouvrir le menu",
+      );
+    };
+
+    button.addEventListener("click", () => {
+      setOpen(button.getAttribute("aria-expanded") !== "true");
+    });
+
+    navigation.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest("a")) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Escape" &&
+        button.getAttribute("aria-expanded") === "true"
+      ) {
+        setOpen(false);
+        button.focus();
+      }
+    });
+  }
+</script>

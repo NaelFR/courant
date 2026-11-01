@@ -1,0 +1,108 @@
+---
+import Star from "../../assets/star.svg";
+
+const testimonies = [
+  {
+    rate: 5,
+    text: "Panne générale un dimanche soir. Cédric est venu dans l'heure, a trouvé le problème et tout remis en route. Prix annoncé respecté.",
+    author: "Julie M.",
+    location: "Lambersart",
+    type: "Dépannage",
+  },
+  {
+    rate: 3,
+    text: "Remplacement complet du tableau dans notre maison des années 70. Travail soigné, explications claires, rien à redire. Travail soigné, explications claires, rien à redire. Travail soigné, explications claires, rien à redire. Travail soigné, explications claires, rien à redire. Travail soigné, explications claires, rien à redire. ",
+    author: "Naël A.",
+    location: "Hellemmes",
+    type: "Tableau électrique",
+  },
+  {
+    rate: 5,
+    text: "Il a géré toute l'électricité de notre cuisine et les spots du salon. De très bons conseils sur l'éclairage.",
+    author: "Sophie & Karim",
+    location: "Lille",
+    type: "Aménagement",
+  },
+  {
+    rate: 5,
+    text: "Réactif, ponctuel et chantier laissé nickel. Le devis était détaillé et la facture identique. Je recommande.",
+    author: "Marc L.",
+    location: "Wavrin",
+    type: "Mise aux normes",
+  },
+  {
+    rate: 5,
+    text: "Diagnostic complet avant l'achat de notre maison. Rapport clair, conseils honnêtes et devis de mise aux normes très raisonnable.",
+    author: "Amélie R.",
+    location: "Sainghin-en-Weppes",
+    type: "Diagnostic",
+  },
+  {
+    rate: 5,
+    text: "Création de nouveaux circuits pour notre bureau à domicile. Cédric a été à l'écoute et tout était terminé en une journée.",
+    author: "Nicolas B.",
+    location: "La Madeleine",
+    type: "Installation",
+  },
+];
+---
+
+<section class="py-14 px-4 bg-rose">
+  <div class="mx-auto max-w-7xl">
+    <h4 class="text-h4 lg:text-h2 text-center text-bordeaux mb-10">
+      Ils m'ont fait confiance.
+    </h4>
+    <div>
+      <ul
+        class="flex items-stretch gap-4 snap-x snap-mandatory overflow-x-auto
+         lg:flex-wrap lg:justify-center lg:overflow-visible"
+      >
+        {
+          testimonies.map(({ rate, text, author, location, type }) => (
+            <li class="flex w-80 shrink-0 snap-start">
+              <div class="flex w-full flex-col rounded-3xl bg-vanille p-8">
+                <div
+                  class="flex shrink-0"
+                  role="img"
+                  aria-label={`${rate} sur 5 étoiles`}
+                >
+                  {Array.from({ length: rate }, () => (
+                    <span aria-hidden="true">
+                      <Star />
+                    </span>
+                  ))}
+                </div>
+
+                <div class="flex-1 border-b border-dashed border-gris/50 py-6">
+                  <p class="line-clamp-4 text-bordeaux">« {text} »</p>
+                </div>
+
+                <div class="flex shrink-0 items-start gap-4 pt-6">
+                  <span
+                    aria-hidden="true"
+                    class="flex size-11 shrink-0 items-center justify-center
+                     rounded-full bg-bordeaux text-h6 text-vanille"
+                  >
+                    {author.charAt(0)}
+                  </span>
+
+                  <div class="min-w-0 flex-1">
+                    <p class="truncate text-body-lg leading-7 text-bordeaux">
+                      {author}
+                    </p>
+
+                    <p class="line-clamp-2 h-12 text-body-sm leading-6 text-gris">
+                      {location}
+                      {location && type ? " • " : ""}
+                      {type}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
