@@ -3,69 +3,70 @@ import Star from "../../assets/star.svg";
 
 import type { Testimony } from "../../data/site-types";
 
-interface Props { testimonies: Testimony[] }
+interface Props {
+  testimonies: Testimony[];
+}
 const { testimonies } = Astro.props;
-
 ---
 
-{testimonies.length > 0 && (
-<section id="avis" class="py-14 px-4 bg-rose">
-  <div class="mx-auto max-w-7xl">
-    <h2 class="text-h4 lg:text-h2 text-center text-bordeaux mb-10">
-      Ils m'ont fait confiance.
-    </h2>
-    <div>
-      <ul
-        class="flex items-stretch gap-4 snap-x snap-mandatory overflow-x-auto
+{
+  testimonies.length > 0 && (
+    <section id="avis" class="py-14 pl-4 pr-0 bg-rose">
+      <div class="mx-auto max-w-7xl">
+        <h2 class="text-h4 lg:text-h2 text-center text-bordeaux mb-10">
+          Ils m'ont fait confiance.
+        </h2>
+        <div>
+          <ul
+            class="flex items-stretch gap-4 snap-x snap-mandatory overflow-x-auto
          lg:flex-wrap lg:justify-center lg:overflow-visible"
-      >
-        {
-          testimonies.map(({ rate, text, author, location, type }) => (
-            <li class="flex w-[min(20rem,100%)] shrink-0 snap-start">
-              <div class="flex w-full flex-col rounded-3xl bg-vanille p-8">
-                <div
-                  class="flex shrink-0"
-                  role="img"
-                  aria-label={`${rate} sur 5 étoiles`}
-                >
-                  {Array.from({ length: rate }, () => (
-                    <span aria-hidden="true">
-                      <Star />
-                    </span>
-                  ))}
-                </div>
-
-                <div class="flex-1 border-b border-dashed border-gris/50 py-6">
-                  <p class="line-clamp-4 text-bordeaux">« {text} »</p>
-                </div>
-
-                <div class="flex shrink-0 items-start gap-4 pt-6">
-                  <span
-                    aria-hidden="true"
-                    class="flex size-11 shrink-0 items-center justify-center
-                     rounded-full bg-bordeaux text-h6 text-vanille"
+          >
+            {testimonies.map(({ rate, text, author, location, type }) => (
+              <li class="flex w-[min(20rem,100%)] shrink-0 snap-start">
+                <div class="flex w-full flex-col rounded-3xl bg-vanille p-8">
+                  <div
+                    class="flex shrink-0"
+                    role="img"
+                    aria-label={`${rate} sur 5 étoiles`}
                   >
-                    {author.charAt(0)}
-                  </span>
+                    {Array.from({ length: rate }, () => (
+                      <span aria-hidden="true">
+                        <Star />
+                      </span>
+                    ))}
+                  </div>
 
-                  <div class="min-w-0 flex-1">
-                    <p class="truncate text-body-lg leading-7 text-bordeaux">
-                      {author}
-                    </p>
+                  <div class="flex-1 border-b border-dashed border-gris/50 py-6">
+                    <p class="line-clamp-4 text-bordeaux">« {text} »</p>
+                  </div>
 
-                    <p class="line-clamp-2 h-12 text-body-sm leading-6 text-gris">
-                      {location}
-                      {location && type ? " • " : ""}
-                      {type}
-                    </p>
+                  <div class="flex shrink-0 items-start gap-4 pt-6">
+                    <span
+                      aria-hidden="true"
+                      class="flex size-11 shrink-0 items-center justify-center
+                     rounded-full bg-bordeaux text-h6 text-vanille"
+                    >
+                      {author.charAt(0)}
+                    </span>
+
+                    <div class="min-w-0 flex-1">
+                      <p class="truncate text-body-lg leading-7 text-bordeaux">
+                        {author}
+                      </p>
+
+                      <p class="line-clamp-2 h-12 text-body-sm leading-6 text-gris">
+                        {location}
+                        {location && type ? " • " : ""}
+                        {type}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </div>
-</section>
-)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )
+}

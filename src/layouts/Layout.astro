@@ -45,7 +45,7 @@ const business = {
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth motion-reduce:scroll-auto">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -61,15 +61,28 @@ const business = {
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Courant — Électricité et dépannage dans la métropole lilloise et les Weppes" />
+    <meta
+      property="og:image:alt"
+      content="Courant — Électricité et dépannage dans la métropole lilloise et les Weppes"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
-    <meta name="twitter:image:alt" content="Courant — Électricité et dépannage" />
+    <meta
+      name="twitter:image:alt"
+      content="Courant — Électricité et dépannage"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <script type="application/ld+json" set:html={JSON.stringify(business).replace(/</g, "\\u003c")} />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(business).replace(/</g, "\\u003c")}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
